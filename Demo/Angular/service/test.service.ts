@@ -22,6 +22,9 @@ export class TestService {
     }
 
     async getBlobFile(id: string) { // Example with all the 4 parameters (URL, method, body, config)
-        return await apiService<Blob>(`/test/${id}/file`, 'GET', null, { responseType: 'blob' });
+        const blob = await apiService<Blob>(`/test/${id}/file`, 'GET', null, { responseType: 'blob' });
+        const fileURL = URL.createObjectURL(blob); // Convert blob to URL
+
+        return fileURL; // Return the file URL to reduce the size of the data when using through components;
     }
 }
