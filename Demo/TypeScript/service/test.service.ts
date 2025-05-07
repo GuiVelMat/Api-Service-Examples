@@ -9,15 +9,19 @@ export class TestService {
         return await apiService(`/test/${id}`, 'GET');
     }
 
-    async createTest(data: any) { //cambiar any por el modelo que se necesite
+    async createTest(data: any) { // Change 'any' to the required model type
         return await apiService('/test', 'POST', data);
     }
 
-    async updateTest(id: string, data: any) { //cambiar any por el modelo que se necesite
+    async updateTest(id: string, data: any) { // Change 'any' to the required model type
         return await apiService(`/test/${id}`, 'PUT', data);
     }
 
     async deleteTest(id: string) {
         return await apiService(`/test/${id}`, 'DELETE');
+    }
+
+    async getBlobFile(id: string) { // Example with all the 4 parameters (URL, method, body, config)
+        return await apiService<Blob>(`/test/${id}/file`, 'GET', null, { responseType: 'blob' });
     }
 }
